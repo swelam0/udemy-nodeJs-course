@@ -12,8 +12,14 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set("views", "./views");
 
+
+
 app.get("/", (req, res) => {
   res.render('home/index');
+});
+
+app.get("/about", (req, res) => {
+  res.render('home/about');
 });
 
 app.listen(port, () => {
