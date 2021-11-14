@@ -1,34 +1,18 @@
 const express = require("express");
 const path = require("path");
-const {engine} = require("express-handlebars");
+const { engine } = require("express-handlebars");
 
 const app = express();
 const port = process.env.PORT || 4500;
 
-
 app.use(express.static(path.join(__dirname, "public")));
-
-app.engine('handlebars', engine());
-app.set('view engine', 'handlebars');
+app.engine("handlebars", engine());
+app.set("view engine", "handlebars");
 app.set("views", "./views");
 
+const mainRouter = require("./routes/home/main");
 
-
-app.get("/", (req, res) => {
-  res.render('home/index');
-});
-
-app.get("/about", (req, res) => {
-  res.render('home/about');
-});
-
-app.get("/login", (req, res) => {
-  res.render('home/login');
-});
-
-app.get("/register", (req, res) => {
-  res.render('home/register');
-});
+app.use("/", mainRouter);
 
 app.listen(port, () => {
   console.log(`listening on port : ${port}`);
