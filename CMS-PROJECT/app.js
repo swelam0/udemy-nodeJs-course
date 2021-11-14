@@ -10,9 +10,11 @@ app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
-const mainRouter = require("./routes/home/main");
+const homeRouter = require("./routes/home/index");
+app.use("/", homeRouter);
 
-app.use("/", mainRouter);
+const adminRouter = require("./routes/admin/index");
+app.use("/admin", adminRouter);
 
 app.listen(port, () => {
   console.log(`listening on port : ${port}`);
