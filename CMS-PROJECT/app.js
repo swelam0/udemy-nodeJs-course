@@ -7,7 +7,7 @@ const port = process.env.PORT || 4500;
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.engine("handlebars", engine({defaultLayout: 'home'}));
+app.engine("handlebars", engine({ defaultLayout: "home" }));
 app.set("view engine", "handlebars");
 
 // home site routers
@@ -17,6 +17,10 @@ app.use("/", homeRouter);
 // admin dashboard routers
 const adminRouter = require("./routes/admin/index");
 app.use("/admin", adminRouter);
+
+// admin posts routers
+const postsRouter = require("./routes/admin/posts");
+app.use("/admin/posts", postsRouter);
 
 app.listen(port, () => {
   console.log(`listening on port : ${port}`);
