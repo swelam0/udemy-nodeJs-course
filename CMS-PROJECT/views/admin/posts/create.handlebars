@@ -5,13 +5,14 @@
       type="text"
       class="form-control"
       id="title"
+      name="title"
       placeholder="Enter title"
     />
   </div>
 
   <div class="form-group">
     <label for="status">Status</label>
-    <select class="form-control" id="status">
+    <select class="form-control" id="status" name="status">
       <option>Public</option>
       <option>Private</option>
       <option>Draft</option>
@@ -24,7 +25,6 @@
       type="checkbox"
       name="allowComments"
       id="allowComments"
-      value="option1"
       checked
     />
     <label class="form-check-label" for="allowComments">
@@ -39,6 +39,7 @@
       id="body"
       rows="3"
       placeholder="Enter Description"
+      name="body"
     ></textarea>
   </div>
 

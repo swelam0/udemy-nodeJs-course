@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const { engine } = require("express-handlebars");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = process.env.PORT || 4500;
@@ -17,6 +18,8 @@ mongoose
   });
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.engine("handlebars", engine({ defaultLayout: "home" }));
 app.set("view engine", "handlebars");

@@ -16,7 +16,7 @@ router.get("/create", (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-  res.send('asdsa')
+  console.log(req.body);
 })
 
 module.exports = router;
