@@ -1,7 +1,6 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const PostSchema = new Schema({
-  user: {},
   title: {
     type: String,
     required: true,
@@ -19,3 +18,5 @@ const PostSchema = new Schema({
     required: true,
   },
 });
+
+module.exports = model("posts", PostSchema);
