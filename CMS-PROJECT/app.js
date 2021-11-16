@@ -1,9 +1,19 @@
 const express = require("express");
 const path = require("path");
 const { engine } = require("express-handlebars");
+const mongoose = require("mongoose");
 
 const app = express();
 const port = process.env.PORT || 4500;
+
+mongoose
+  .connect("mongodb://localhost:27017/cms")
+  .then((db) => {
+    console.log("MONGO Connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.use(express.static(path.join(__dirname, "public")));
 
