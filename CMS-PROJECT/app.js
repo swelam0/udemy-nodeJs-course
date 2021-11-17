@@ -21,7 +21,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.engine("handlebars", engine({ defaultLayout: "home" }));
+// handlebars helpers
+const { select } = require("./helpers/handlebars-helpers");
+
+app.engine(
+  "handlebars",
+  engine({ defaultLayout: "home", helpers: { select } })
+);
 app.set("view engine", "handlebars");
 
 // home site routers
