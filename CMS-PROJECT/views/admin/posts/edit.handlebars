@@ -1,4 +1,4 @@
-<form action="/admin/posts/create" method="POST">
+<form action="/admin/posts/edit" method="POST">
   <div class="form-group">
     <label for="title">Title</label>
     <input
@@ -7,15 +7,16 @@
       id="title"
       name="title"
       placeholder="Enter title"
+      value="{{title}}"
     />
   </div>
 
   <div class="form-group">
     <label for="status">Status</label>
     <select class="form-control" id="status" name="status">
-      <option>Public</option>
-      <option>Private</option>
-      <option>Draft</option>
+      <option value="Public">Public</option>
+      <option value="Private">Private</option>
+      <option value="Draft">Draft</option>
     </select>
   </div>
 
@@ -25,8 +26,7 @@
       type="checkbox"
       name="allowComments"
       id="allowComments"
-      value="ture"
-      checked 
+      {{#if allowComments}} checked {{/if}}
     />
     <label class="form-check-label" for="allowComments">
       Allow Comments
@@ -41,7 +41,7 @@
       rows="3"
       placeholder="Enter Description"
       name="body"
-    ></textarea>
+    >{{body}}</textarea>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>

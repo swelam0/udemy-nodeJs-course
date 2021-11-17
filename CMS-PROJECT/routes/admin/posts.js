@@ -48,7 +48,14 @@ router.post("/create", (req, res) => {
 
 // edit single post page
 router.get("/edit/:id", (req, res) => {
-  res.render("./admin/posts/edit");
+  Post.findById(req.params.id)
+    .then((post) => {
+      console.log(post);
+      res.render("./admin/posts/edit", post);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 module.exports = router;
