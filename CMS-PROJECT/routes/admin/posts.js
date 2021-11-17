@@ -7,10 +7,18 @@ router.all("/*", (req, res, next) => {
   next();
 });
 
+// show all posts
 router.get("/", (req, res) => {
-  res.render("admin/posts");
+  Post.find({}).lean()
+    .then((posts) => {
+      res.render("admin/posts", {posts: posts});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
+// create single post
 router.get("/create", (req, res) => {
   res.render("admin/posts/create");
 });
