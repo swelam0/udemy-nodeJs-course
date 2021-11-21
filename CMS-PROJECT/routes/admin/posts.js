@@ -57,6 +57,7 @@ router.get("/edit/:id", (req, res) => {
     });
 });
 
+// edit single post action
 router.put("/edit/:id", (req, res) => {
   let allowComments = req.body.allowComments ? true : false;
   Post.findById(req.params.id)
@@ -66,9 +67,20 @@ router.put("/edit/:id", (req, res) => {
       post.allowComments = allowComments;
       post.body = req.body.body;
 
-      post.save().then(updatedPost => {
-        res.redirect('/admin/posts')
-      })
+      post.save().then((updatedPost) => {
+        res.redirect("/admin/posts");
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// delete single post
+router.delete("/delete/:id", (req, res) => {
+  Post.findByIdAndDelete(req.params.id)
+    .then((post) => {
+      res.redirect('/admin/posts')
     })
     .catch((err) => {
       console.log(err);

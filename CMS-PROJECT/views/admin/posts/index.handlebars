@@ -11,20 +11,29 @@
         <th>Title</th>
         <th>Status</th>
         <th>Allow Comments</th>
-        <th>Buttons</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
       {{#each posts}}
-      <tr>
-        <td>{{_id}}</td>
-        <td>{{title}}</td>
-        <td>{{status}}</td>
-        <td>{{allowComments}}</td>
-        <td>
-          <a href="/admin/posts/edit/{{_id}}" class="btn btn-primary">Edit</a>
-        </td>
-      </tr>
+        <tr>
+          <td>{{_id}}</td>
+          <td>{{title}}</td>
+          <td>{{status}}</td>
+          <td>{{allowComments}}</td>
+          <td>
+            <a href="/admin/posts/edit/{{_id}}" class="btn btn-primary">Edit</a>
+          </td>
+          <td>
+            <form
+              action="/admin/posts/delete/{{_id}}?_method=DELETE"
+              method="POST"
+            >
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
       {{/each}}
     </tbody>
   </table>
