@@ -50,12 +50,15 @@ router.post("/create", (req, res) => {
 router.get("/edit/:id", (req, res) => {
   Post.findById(req.params.id)
     .then((post) => {
-      console.log(post);
       res.render("./admin/posts/edit", post);
     })
     .catch((err) => {
       console.log(err);
     });
+});
+
+router.put("/edit/:id", (req, res) => {
+  console.log([req.body, req.params.id]);
 });
 
 module.exports = router;

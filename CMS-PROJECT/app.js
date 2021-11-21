@@ -3,6 +3,7 @@ const path = require("path");
 const { engine } = require("express-handlebars");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
 
 const app = express();
 const port = process.env.PORT || 4500;
@@ -17,6 +18,9 @@ mongoose
     console.log(err);
   });
 
+// method-override usage
+app.use(methodOverride("_method"));
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,6 +28,7 @@ app.use(bodyParser.json());
 // handlebars helpers
 const { select } = require("./helpers/handlebars-helpers");
 
+// experss engine
 app.engine(
   "handlebars",
   engine({ defaultLayout: "home", helpers: { select } })
